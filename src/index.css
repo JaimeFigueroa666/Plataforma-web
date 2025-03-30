@@ -57,12 +57,28 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #7ab915;
+    background-color: #a9ecb9;
   }
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #f9f9f9;
+  }
+  #noticias {
+    position: fixed; /* o 'absolute' si prefieres que sea relativo al contenedor padre */
+    top: 0;
+    right: 20%;
+    color: #f9f9f9;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    width: auto; /* o un ancho específico como 300px */
+    height: auto; /* o una altura específica */
+    padding: 10px; /* opcional, para espacio interno */
+    margin: 0; /* opcional, para eliminar márgenes por defecto */
+    z-index: 1000; /* opcional, para asegurar que esté por encima de otros elementos */
+  }
+  #noticias:hover {
+    background-color: rgb(238, 228, 39);
   }
 }

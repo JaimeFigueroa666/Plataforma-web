@@ -5,10 +5,11 @@ function Bienvenido({ user, setUser }) {
   
     return (
       <>
+      <div id="noticias"><a href="noticiasmas.html">Noticias</a></div>
         <h1>Portal Los Robles</h1>
         <h2>Bienvenido {user}</h2>
         <button onClick={cerrarSesion}>Cerrar Sesión</button>
-  
+        
       </>
     )
   }

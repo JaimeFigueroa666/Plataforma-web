@@ -2,9 +2,9 @@ import { useState } from "react";
 import './Login.css'
 // crear una base de datos ficcticio
 const users = [
-  { username: 'admin', password: '123456' },
-  { username: 'user', password: '789012' },
-  { username: 'jaime figueroa herrera', password: '123456' }
+  { username: 'admin', password: '123' },
+  { username: 'user', password: '123' },
+  { username: 'jaime figueroa herrera', password: '123' }
 ]
 
 function Login({ setUser }) {
