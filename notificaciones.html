@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Notificaciones</title>
+    <div id="noticias"><a href="noticiasmas.html">Noticias</a></div>
+    <a href="index.html">Home</a>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #f5f7ff;
+            --text-color: #333;
+            --light-gray: #f0f2f5;
+            --border-color: #ddd;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 107, 255, 0.2);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        button:hover {
+            background-color: #3a5bef;
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        #vernotificacion {
+            background-color: #6c757d;
+        }
+        
+        #vernotificacion:hover {
+            background-color: #5a6268;
+        }
+        
+        .notification-preview {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .notification-preview h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Notificaciones</h1>
+        
+        <div class="form-group">
+            <label for="titulo">Título de la Notificación</label>
+            <input type="text" id="titulo" placeholder="Ingrese el título de la notificación" value="Nueva Notificación">
+        </div>
+        
+        <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" placeholder="Escriba el mensaje de la notificación aquí...">¡Tienes un nuevo mensaje!</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="icono">URL del Icono (opcional)</label>
+            <input type="text" id="icono" placeholder="https://ejemplo.com/icono.png">
+        </div>
+        
+        <div class="button-group">
+            <button id="notificar">Enviar Notificación</button>
+            <button id="vernotificacion">Ver Notificación</button>
+        </div>
+        
+        <div class="notification-preview">
+            <h3>Vista Previa</h3>
+            <p><strong id="preview-titulo">Nueva Notificación</strong></p>
+            <p id="preview-mensaje">¡Tienes un nuevo mensaje!</p>
+            <p class="text-muted">La notificación real se verá diferente según tu sistema operativo.</p>
+        </div>
+    </div>
+
+    <script>
+        // Actualizar vista previa cuando cambian los campos
+        document.getElementById('titulo').addEventListener('input', function() {
+            document.getElementById('preview-titulo').textContent = this.value || "Nueva Notificación";
+        });
+        
+        document.getElementById('mensaje').addEventListener('input', function() {
+            document.getElementById('preview-mensaje').textContent = this.value || "¡Tienes un nuevo mensaje!";
+        });
+        // custom.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos del DOM
+    const notificarBtn = document.getElementById('notificar');
+    const verNotificacionBtn = document.getElementById('vernotificacion');
+    const tituloInput = document.getElementById('titulo');
+    const mensajeInput = document.getElementById('mensaje');
+    const iconoInput = document.getElementById('icono');
+
+    // Verificar si el navegador soporta la API de Notificaciones
+    if (!('Notification' in window)) {
+        alert('Este navegador no soporta las notificaciones de escritorio');
+        notificarBtn.disabled = true;
+        verNotificacionBtn.disabled = true;
+        return;
+    }
+
+    // Solicitar permiso para notificaciones al cargar la página
+    function solicitarPermiso() {
+        if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    console.log('Permiso para notificaciones concedido');
+                }
+            });
+        }
+    }
+
+    // Llamar a la función de permiso al cargar
+    solicitarPermiso();
+
+    // Función para mostrar notificación
+    function mostrarNotificacion(titulo, mensaje, icono = null) {
+        if (Notification.permission === 'granted') {
+            const opciones = {
+                body: mensaje,
+                icon: icono || null,
+                vibrate: [200, 100, 200], // Patrón de vibración para móviles
+                tag: 'notificacion-personalizada' // Para evitar notificaciones duplicadas
+            };
+
+            new Notification(titulo, opciones);
+            
+            // También mostramos una alerta en caso de que la notificación no sea visible
+            console.log(`Notificación enviada: ${titulo} - ${mensaje}`);
+        } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    mostrarNotificacion(titulo, mensaje, icono);
+                }
+            });
+        }
+    }
+
+    // Evento para el botón "Enviar Notificación"
+    notificarBtn.addEventListener('click', function() {
+        const titulo = tituloInput.value.trim() || 'Nueva Notificación';
+        const mensaje = mensajeInput.value.trim() || '¡Tienes un nuevo mensaje!';
+        const icono = iconoInput.value.trim() || null;
+
+        mostrarNotificacion(titulo, mensaje, icono);
+    });
+
+    // Evento para el botón "Ver Notificación" (simulación instantánea)
+    verNotificacionBtn.addEventListener('click', function() {
+        const titulo = tituloInput.value.trim() || 'Nueva Notificación';
+        const mensaje = mensajeInput.value.trim() || '¡Tienes un nuevo mensaje!';
+        const icono = iconoInput.value.trim() || null;
+
+        // Mostrar notificación de prueba
+        if (Notification.permission === 'granted') {
+            mostrarNotificacion(titulo, mensaje, icono);
+        } else {
+            alert(`Vista previa de notificación:\n\n${titulo}\n${mensaje}`);
+            console.log('Notificación simulada (sin permisos):', { titulo, mensaje, icono });
+        }
+    });
+
+    // Notificación de bienvenida cuando se concede el permiso
+    if (Notification.permission === 'granted') {
+        setTimeout(() => {
+            mostrarNotificacion(
+                'Notificaciones activadas', 
+                'Ahora recibirás notificaciones de este sitio.',
+                'https://cdn-icons-png.flaticon.com/512/2489/2489073.png'
+            );
+        }, 1500);
+    }
+});
+    </script>
+</body>
+</html>
