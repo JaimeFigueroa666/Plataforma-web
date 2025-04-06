@@ -1,0 +1,145 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0070ba;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los enlaces se ajusten automáticamente */
+}
+
+.navbar a {
+    color: rgb(246, 242, 242);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #011a2a;
+    border-radius: 5px;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinea los elementos al inicio */
+        padding: 1rem 2rem;
+    }
+
+    .navbar a {
+        padding: 0.5rem 0; /* Reduce el padding vertical */
+        width: 100%; /* Los enlaces ocupan todo el ancho */
+        text-align: left; /* Alinea el texto a la izquierda */
+    }
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #04263b;
+    border-bottom: 2px solid #0070ba;
+}
+
+header h1 { 
+    color: #0070ba;
+    font-size: 2rem;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem; /* Reduce el tamaño del texto en pantallas pequeñas */
+    }
+}
+
+/* Main Section */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+.container h2 {
+    color: #0070ba;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.container p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem; /* Reduce el padding en pantallas pequeñas */
+    }
+
+    .container h2 {
+        font-size: 1.5rem; /* Ajusta el tamaño del encabezado */
+    }
+
+    .container p {
+        font-size: 0.9rem; /* Ajusta el tamaño del texto */
+    }
+}
+
+/* PayPal Button */
+#paypal-button-container {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Botón para Historial de Pagos */
+.btn-historial {
+    padding: 10px 20px;
+    background-color: #4a6bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-historial:hover {
+    background-color: #3a5bef;
+    transform: scale(1.05); /* Efecto de agrandamiento al pasar el cursor */
+}
+
+.btn-historial:active {
+    background-color: #2a4dbf;
+    transform: scale(0.95); /* Efecto de reducción al hacer clic */
+}
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;  
+    background-color: #0070ba;
+    color: white;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.9rem; /* Reduce el tamaño del texto en el footer */
+    }
+}

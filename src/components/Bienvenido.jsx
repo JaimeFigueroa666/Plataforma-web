@@ -5,8 +5,12 @@ function Bienvenido({ user, setUser }) {
   
     return (
       <>
-      <div id="noticias"><a href="noticiasmas.html">Noticias</a></div>
-      <div id="notificaciones"><a href="notificaciones.html">Notificaciones</a></div>
+      
+      <nav className="navbar">
+                <a id="noticias" href="noticiasmas.html">Noticias</a>
+                <a id="notificaciones" href="notificaciones.html">Notificaciones</a>
+                <a id="pagos" href="paypal.html">Cuotas</a>
+            </nav>
      
         <h1>Portal Los Robles</h1>
         <h2>Bienvenido {user}</h2>

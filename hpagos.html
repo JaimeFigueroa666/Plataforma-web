@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Pagos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7ff;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4a6bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4a6bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4a6bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3a5bef;
+        }
+        #login-container {
+            display: none;
+        }
+        #main-container {
+            display: none;
+        }
+        .navbar {
+            background-color: #0070ba;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #005f9e;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="paypal.html">Regresar a Pagos</a>
+    </nav>
+
+    <div id="login-container" class="container">
+        <h1>Iniciar Sesión</h1>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <div id="main-container" class="container">
+        <h1>Historial de Pagos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Monto</th>
+                    <th>Método</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-pagos">
+                <!-- Las filas se generarán dinámicamente -->            
+            </tbody>
+        </table>
+
+        <!-- Formulario para agregar pagos (solo visible para admin) -->
+        <div id="formulario-admin" style="display: none;">
+            <h2>Agregar Pago</h2>
+            <form id="form-pago">
+                <select id="usuario" required>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="jaime figueroa herrera">Jaime Figueroa Herrera</option>
+                </select>
+                <input type="date" id="fecha" required>
+                <input type="text" id="monto" placeholder="Monto" required>
+                <select id="metodo" required>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                </select>
+                <select id="estado" required>
+                    <option value="Completado">Completado</option>
+                    <option value="Pendiente">Pendiente</option>
+                </select>
+                <button type="submit">Agregar Pago</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const usuarios = [
+            { username: 'admin', password: '123', role: 'admin' },
+            { username: 'user', password: '123', role: 'user' },
+            { username: 'jaime figueroa herrera', password: '123', role: 'user' }
+        ];
+    
+        const pagos = [
+            { usuario: 'jaime figueroa herrera', fecha: '2025-01-01', monto: '120', metodo: 'paypal', estado: 'Completado' },
+            { usuario: 'jaime figueroa herrera', fecha: '2025-02-01', monto: '1500', metodo: 'Tarjeta de Crédito', estado: 'completado' },
+        ];
+    
+        const loginContainer = document.getElementById('login-container');
+        const mainContainer = document.getElementById('main-container');
+        const formularioAdmin = document.getElementById('formulario-admin');
+        const tablaPagos = document.getElementById('tabla-pagos');
+        const formPago = document.getElementById('form-pago');
+    
+        let usuarioActual = null;
+    
+        // Mostrar el formulario de inicio de sesión
+        loginContainer.style.display = 'block';
+    
+        // Manejar el inicio de sesión
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.toLowerCase();
+            const password = document.getElementById('password').value;
+    
+            // Validar credenciales
+            const usuario = usuarios.find(u => u.username === username && u.password === password);
+            if (usuario) {
+                usuarioActual = usuario;
+                loginContainer.style.display = 'none';
+                mainContainer.style.display = 'block';
+    
+                // Mostrar formulario de agregar pagos solo si es admin
+                if (usuario.role === 'admin') {
+                    formularioAdmin.style.display = 'block';
+                }
+    
+                cargarPagos();
+            } else {
+                alert('Credenciales incorrectas');
+            }
+        });
+    
+        // Cargar pagos desde el array local
+        function cargarPagos() {
+            // Filtrar pagos si no es admin
+            const pagosFiltrados = usuarioActual.role === 'admin'
+                ? pagos
+                : pagos.filter(pago => pago.usuario === usuarioActual.username);
+    
+            tablaPagos.innerHTML = '';
+            pagosFiltrados.forEach(pago => {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${pago.usuario}</td>
+                    <td>${pago.fecha}</td>
+                    <td>${pago.monto}</td>
+                    <td>${pago.metodo}</td>
+                    <td>${pago.estado}</td>
+                `;
+                tablaPagos.appendChild(fila);
+            });
+        }
+    
+        // Agregar nuevo pago al array local
+        if (formPago) {
+            formPago.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nuevoPago = {
+                    usuario: document.getElementById('usuario').value,
+                    fecha: document.getElementById('fecha').value,
+                    monto: document.getElementById('monto').value,
+                    metodo: document.getElementById('metodo').value,
+                    estado: document.getElementById('estado').value
+                };
+                pagos.push(nuevoPago); // Agregar el nuevo pago al array
+                formPago.reset();
+                cargarPagos(); // Recargar la tabla con los nuevos datos
+            });
+        }
+    </script>
+</body>
+</html>

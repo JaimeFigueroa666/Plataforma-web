@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuotas RB</title>
+    <link rel="stylesheet" href="Paypal.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="noticiasmas.html">Noticias</a>
+        <a href="notificaciones.html">Notificaciones</a>
+    </nav>
+    <header>
+        <h1>Pago de Cuotas Residencial los Robles</h1>
+    </header>
+    <main class="container">
+        <section>
+            <h2>Realiza tu pago</h2>
+            <p>Presiona el botón para realizar tu pago.</p>
+            <div id="paypal-button-container"></div>
+        </section>
+        <section>
+            <h2>Historial de Pagos</h2>
+            <p>Consulta o administra tu historial de pagos.</p>
+            <!-- Botón para ingresar a hpagos.html -->
+            <a href="hpagos.html">
+                <button class="btn-historial">
+                    Ir al Historial de Pagos
+                </button>
+            </a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Plataforma Web. All rights reserved.</p>
+    </footer>
+    <script src="https://www.paypal.com/sdk/js?client-id=AYP7mA71vclWG094s6y1sOzFFU9EhZwFIgOHy8vm7QEju86oBAesY-MpFNfrr1DD1dE4H_LiFPCKgQjd"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            currency_code: 'MXN', // Reemplazar según la moneda a pagar
+                            value: '1000.00' // Reemplazar según el monto a pagar
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
