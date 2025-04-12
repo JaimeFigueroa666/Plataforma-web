@@ -1,0 +1,361 @@
+:root {
+  --primary-color: #4a6bff;
+  --secondary-color: #f5f7ff;
+  --text-color-dark: #213547;
+  --text-color-light: rgba(255, 255, 255, 0.87);
+  --background-dark: #242424;
+  --background-light: #F2F2F2;
+  --accent-color: #2731ee;
+  --accent-hover: #77c63f;
+  --success-color: #a9ecb9;
+  --warning-color: #ffeb3b;
+  --news-color: #ff6b6b;
+  
+  font-family: 'Segoe UI', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--background-dark) 0%, #1a1a1a 100%);
+  transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: linear-gradient(135deg, var(--background-light) 0%, #e0e0e0 100%);
+  }
+}
+
+.container2 {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semitransparente */
+  padding: 1.5rem; /* Espaciado interno */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el contenedor */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidad con navegadores WebKit */
+  text-align: center; /* Centrar texto */
+  display: inline-block; /* Ajusta el ancho al contenido */
+  max-width: 100%; /* Evita que el contenedor sea demasiado ancho */
+  margin: 2rem auto; /* Centra el contenedor vertical y horizontalmente */
+}
+/* Navbar */
+
+.navbar {
+  padding: 1rem;
+  display: flex; /* Alinea los elementos en una fila */
+  justify-content: space-evenly; /* Espacio uniforme entre los enlaces */
+  align-items: center; /* Centra los elementos verticalmente */
+}
+.container2 h2 {
+  color: rgba(255, 255, 255, 0.8); /* Texto blanco con opacidad */
+  font-size: 1.8rem; /* Tamaño de fuente */
+  font-weight: 400; /* Peso de fuente normal */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.618); /* Sombra más ligera */
+  margin-top: 0; /* Elimina el margen superior */
+  text-align: center; /* Centrar el texto */
+}
+
+/* Contenedor de notificaciones y noticias */
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+
+/* Estilo para notificaciones (con campana) */
+#notificaciones {
+  background-color: var(--success-color);
+  color: rgb(34, 27, 27);
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+#notificaciones:hover {
+  background-color: #043a21;
+  color:white;
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+#notificaciones::before {
+  content: "🔔";
+  font-size: 1.2em;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+#notificaciones:hover::before {
+  animation: shake 0.5s ease-in-out; /* Aplica la animación al pasar el mouse */
+}
+
+/* Definición de la animación */
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Estilo para noticias */
+#noticias {
+  background-color: var(--news-color);
+  color: rgb(31, 24, 24);
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position : relative;
+}
+
+#noticias:hover {
+  background-color: #ce1414;
+  transform: scale(1.05);
+  text-decoration: none;
+  color: rgb(246, 230, 230);
+  
+}
+
+#noticias::before {
+  content: "📰"; 
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+}
+#noticias:hover::before {
+  transform: rotate(360deg);
+}
+
+
+/* Estilo para pagos*/
+#pagos {
+  background-color: var(--primary-color);
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-emphasis: center;
+}
+
+#pagos:hover {
+  background-color: rgb(14, 17, 87);
+  transform: scale(1.05);
+  color:white;
+  text-decoration: none;
+}
+
+#pagos::before {
+  content: "💳";
+  font-size: 1.2em;
+  display: inline-block;
+  position: relative; /* Necesario para mover el ícono */
+}
+
+#pagos:hover::before {
+  animation: slide 0.8s ease-in-out; /* Aplica la animación al pasar el mouse */
+}
+
+/* Definición de la animación */
+@keyframes slide {
+  0% {
+    transform: translateX(0); /* Posición inicial */
+  }
+  50% {
+    transform: translateX(10px); /* Mueve hacia la derecha */
+  }
+  100% {
+    transform: translateX(0); /* Regresa a la posición inicial */
+  }
+}
+
+#app {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+header {
+  margin-bottom: 3rem;
+}
+
+.container2 h1 {
+  color: rgba(255, 255, 255, 0.9); /* Texto blanco con opacidad */
+  font-size: 2.5rem; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el texto */
+  margin-bottom: 1rem; /* Espaciado inferior */
+  text-align: center; /* Centrar el texto */
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.subtitle {
+  font-size: 1.2em;
+  color: var(--text-color-light);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+@media (prefers-color-scheme: light) {
+  .subtitle {
+    color: var(--text-color-dark);
+  }
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.8em 1.6em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--primary-color);
+  color: rgb(163, 128, 128);
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: var(--accent-color);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.secondary {
+  background-color: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+button.secondary:hover {
+  background-color: rgba(14, 17, 87, 0.1);
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.4em;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  button {
+    width: 80%;
+    max-width: 200px;
+  }
+  
+  .notification-container {
+    position: static;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  #notificaciones, #noticias {
+    width: auto;
+    display: inline-flex;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+header, .button-group {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Efecto de tarjeta para el contenido principal */
+.main-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .main-content {
+    background: rgba(28, 14, 14, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
