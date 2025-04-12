@@ -45,6 +45,18 @@ body {
   }
 }
 
+.container2 {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semitransparente */
+  padding: 1.5rem; /* Espaciado interno */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el contenedor */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidad con navegadores WebKit */
+  text-align: center; /* Centrar texto */
+  display: inline-block; /* Ajusta el ancho al contenido */
+  max-width: 100%; /* Evita que el contenedor sea demasiado ancho */
+  margin: 2rem auto; /* Centra el contenedor vertical y horizontalmente */
+}
 /* Navbar */
 
 .navbar {
@@ -53,7 +65,14 @@ body {
   justify-content: space-evenly; /* Espacio uniforme entre los enlaces */
   align-items: center; /* Centra los elementos verticalmente */
 }
-
+.container2 h2 {
+  color: rgba(255, 255, 255, 0.8); /* Texto blanco con opacidad */
+  font-size: 1.8rem; /* Tamaño de fuente */
+  font-weight: 400; /* Peso de fuente normal */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.618); /* Sombra más ligera */
+  margin-top: 0; /* Elimina el margen superior */
+  text-align: center; /* Centrar el texto */
+}
 
 /* Contenedor de notificaciones y noticias */
 .notification-container {
@@ -82,13 +101,30 @@ body {
 }
 
 #notificaciones:hover {
-  background-color: var(--accent-hover);
+  background-color: #043a21;
+  color:white;
   transform: scale(1.05);
+  text-decoration: none;
 }
 
 #notificaciones::before {
   content: "🔔";
   font-size: 1.2em;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+#notificaciones:hover::before {
+  animation: shake 0.5s ease-in-out; /* Aplica la animación al pasar el mouse */
+}
+
+/* Definición de la animación */
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* Estilo para noticias */
@@ -105,24 +141,31 @@ body {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  position : relative;
 }
 
 #noticias:hover {
-  background-color: #e88484;
+  background-color: #ce1414;
   transform: scale(1.05);
+  text-decoration: none;
+  color: rgb(246, 230, 230);
+  
 }
 
 #noticias::before {
   content: "📰"; 
   font-size: 1.2em;
+  transition: transform 0.3s ease;
+}
+#noticias:hover::before {
+  transform: rotate(360deg);
 }
 
 
 /* Estilo para pagos*/
 #pagos {
   background-color: var(--primary-color);
-  color: rgb(226, 211, 211);
-  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  color: rgb(0, 0, 0);
   font-size: 1rem;
   padding: 0.8rem 1.2rem;
   border-radius: 50px;
@@ -138,15 +181,32 @@ body {
 #pagos:hover {
   background-color: rgb(14, 17, 87);
   transform: scale(1.05);
+  color:white;
+  text-decoration: none;
 }
 
 #pagos::before {
   content: "💳";
   font-size: 1.2em;
+  display: inline-block;
+  position: relative; /* Necesario para mover el ícono */
 }
-#pagos a{
-  color: rgb(226, 211, 211);
-  text-decoration: none;
+
+#pagos:hover::before {
+  animation: slide 0.8s ease-in-out; /* Aplica la animación al pasar el mouse */
+}
+
+/* Definición de la animación */
+@keyframes slide {
+  0% {
+    transform: translateX(0); /* Posición inicial */
+  }
+  50% {
+    transform: translateX(10px); /* Mueve hacia la derecha */
+  }
+  100% {
+    transform: translateX(0); /* Regresa a la posición inicial */
+  }
 }
 
 #app {
@@ -161,16 +221,13 @@ header {
   margin-bottom: 3rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient 3s ease infinite;
-  background-size: 200% 200%;
+.container2 h1 {
+  color: rgba(255, 255, 255, 0.9); /* Texto blanco con opacidad */
+  font-size: 2.5rem; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el texto */
+  margin-bottom: 1rem; /* Espaciado inferior */
+  text-align: center; /* Centrar el texto */
 }
 
 @keyframes gradient {

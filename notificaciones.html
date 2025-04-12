@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Notificaciones</title>
-    <div id="noticias"><a href="noticiasmas.html">Noticias</a></div>
-    <a href="index.html">Home</a>
-    <a href="paypal.html">Pagos</a>
+    
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -28,8 +26,35 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--light-gray);
+            background-color: url(/src/image/5.webp);
             padding: 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .navbar a:hover {
+            background-color: #3a5bef;
+            transform: scale(1.05);
         }
         
         .container {
@@ -145,6 +170,15 @@
     </style>
 </head>
 <body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="noticiasmas.html">Noticias</a>
+        <a href="paypal.html">Pagos</a>
+    </div>
+
+
     <div class="container">
         <h1>Sistema de Notificaciones</h1>
         
@@ -276,4 +310,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
     </script>
 </body>
+
 </html>
