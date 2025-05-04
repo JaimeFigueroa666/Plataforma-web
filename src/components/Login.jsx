@@ -49,14 +49,14 @@ function Login({ setUser }) {
           <h1>Iniciar Sesión</h1>
           <h2>Residentes</h2>
           <form action="" onSubmit={validandoDatos}>
-            <input
+            <input className="input"
               type="text"
               placeholder="Nombre de Usuario"
               value={username}
               onChange={(x) => setUsername(x.target.value)}
               name="username"
             />
-            <input
+            <input className="input"
               type="password"
               placeholder="Contraseña"
               value={password}
