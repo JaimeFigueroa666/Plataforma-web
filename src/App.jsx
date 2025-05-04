@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/login" element={user.length === 0? <Login setUser={setUser} />: <Bienvenido user={user} setUser={setUser}/>}/>
         <Route path="*" element={user.length === 0? <Login setUser={setUser} />: <Bienvenido user={user} setUser={setUser}/>}/>  
-        <Route path="/Reportes" element={ <Reportes/>} />
+        <Route path="/Reportes" element={ <Reportes/>} /> 
       </Routes>
     </Router>
   )
